@@ -896,7 +896,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/allowed_cors_origins\",\n        \"value\": [\n            \"http://127.0.0.1:8080/\",\n            \"http://localhost:8080\"\n        ]\n    },\n    {\n        \"op\": \"replace\",\n        \"path\": \"/scope\",\n        \"value\": \"openid offline appSpecificScope\"\n    }\n]",
+							"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/allowed_cors_origins\",\n        \"value\": [\n            \"http://127.0.0.1:8080/\",\n            \"http://127.0.0.1:8080\"\n        ]\n    },\n    {\n        \"op\": \"replace\",\n        \"path\": \"/scope\",\n        \"value\": \"openid offline appSpecificScope\"\n    }\n]",
 							"options": {
 								"raw": {
 									"headerFamily": "json",
@@ -1769,7 +1769,7 @@
 		},
 		{
 			"key": "hydraAdminUrl",
-			"value": "http://localhost:4445",
+			"value": "http://127.0.0.1:4445",
 			"type": "string"
 		},
 		{
@@ -1789,7 +1789,7 @@
 		},
 		{
 			"key": "client_id",
-			"value": "fde30486-5cb2-4eeb-bca7-a215b9ccc997",
+			"value": "516e8cc3-0caf-4d13-997b-06227b6a9ab2",
 			"type": "string"
 		},
 		{

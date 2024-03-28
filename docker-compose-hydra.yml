@@ -11,8 +11,8 @@ services:
         source: ./config
         target: /etc/config/hydra
     environment:
-      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
-    command: serve -c /etc/config/hydra/hydra.yml all --dev
+      - DSN=postgres://kratos:roadsink@127.0.0.1/kratos
+    command: serve -c /etc/config/hydra/hydra.yml all
     restart: unless-stopped
     depends_on:
       - hydra-migrate
@@ -21,7 +21,7 @@ services:
   hydra-migrate:
     image: oryd/hydra:v2.2.0-rc.3
     environment:
-      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
+      - DSN=postgres://kratos:roadsink@127.0.0.1/kratos
     command: migrate -c /etc/config/hydra/hydra.yml sql -e --yes
     volumes:
       - type: bind

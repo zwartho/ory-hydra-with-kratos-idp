@@ -105,7 +105,7 @@ Below are a few basic requests along with descriptions to help you get started q
 
 This request creates a client in Hydra, allowing you to authenticate and obtain tokens for API access.
 
-    - Endpoint: `http://localhost:4445/admin/clients`
+    - Endpoint: `http://127.0.0.1:4445/admin/clients`
     - Method: POST
     - Headers:
         - Content-Type: application/json
@@ -166,7 +166,7 @@ grant_type=authorization_code
 
 Validates and introspects the access token.
 
-    - Endpoint: `http://localhost:4445/admin/oauth2/introspect`
+    - Endpoint: `http://127.0.0.1:4445/admin/oauth2/introspect`
     - Method: POST
     - Headers:
         - Content-Type: application/x-www-form-urlencoded

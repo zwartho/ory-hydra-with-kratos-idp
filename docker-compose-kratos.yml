@@ -3,7 +3,7 @@ services:
   kratos-migrate:
     image: oryd/kratos:v1.1.0
     environment:
-      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
+      - DSN=postgres://kratos:roadsink@127.0.0.1/kratos
     volumes:
       - type: bind
         source: ./config
@@ -17,8 +17,8 @@ services:
     ports:
       - "4455:4455"
     environment:
-      - KRATOS_PUBLIC_URL=http://kratos:4433/
-      - KRATOS_BROWSER_URL=http://127.0.0.1:4433/
+      - KRATOS_PUBLIC_URL=http://ory.dev.roadsync.app/
+      - KRATOS_BROWSER_URL=http://ory.dev.roadsync.app/
       - HYDRA_ADMIN_URL=http://hydra:4445
       - PORT=4455
       - COOKIE_SECRET=SuperSecretCookie # not included in quick-start.yml
@@ -36,8 +36,8 @@ services:
       - '4434:4434' # admin
     restart: unless-stopped
     environment:
-      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
-    command: serve -c /etc/config/kratos/kratos.yml --dev --watch-courier
+      - DSN=postgres://kratos:roadsink@127.0.0.1/kratos
+    command: serve -c /etc/config/kratos/kratos.yml --watch-courier
     volumes:
       - type: bind
         source: ./config
@@ -54,3 +54,4 @@ services:
 
 networks:
   intranet:
+    driver: bridge

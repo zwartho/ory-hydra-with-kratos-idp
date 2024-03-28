@@ -7,15 +7,11 @@ services:
       - "4445:4445" # Admin port
       - "5555:5555" # Port for hydra token user
     volumes:
-      - type: volume
-        source: hydra-sqlite
-        target: /var/lib/sqlite
-        read_only: false
       - type: bind
         source: ./config
         target: /etc/config/hydra
     environment:
-      - DSN=sqlite:///var/lib/sqlite/db.sqlite?_fk=true
+      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
     command: serve -c /etc/config/hydra/hydra.yml all --dev
     restart: unless-stopped
     depends_on:
@@ -25,13 +21,9 @@ services:
   hydra-migrate:
     image: oryd/hydra:v2.2.0-rc.3
     environment:
-      - DSN=sqlite:///var/lib/sqlite/db.sqlite?_fk=true
+      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
     command: migrate -c /etc/config/hydra/hydra.yml sql -e --yes
     volumes:
-      - type: volume
-        source: hydra-sqlite
-        target: /var/lib/sqlite
-        read_only: false
       - type: bind
         source: ./config
         target: /etc/config/hydra
@@ -41,6 +33,3 @@ services:
 
 networks:
   intranet:
-volumes:
-  hydra-sqlite:
-  kratos-sqlite:

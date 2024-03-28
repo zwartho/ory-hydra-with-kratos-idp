@@ -3,12 +3,8 @@ services:
   kratos-migrate:
     image: oryd/kratos:v1.1.0
     environment:
-      - DSN=sqlite:///var/lib/sqlite/db.sqlite?_fk=true
+      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
     volumes:
-      - type: volume
-        source: kratos-sqlite
-        target: /var/lib/sqlite
-        read_only: false
       - type: bind
         source: ./config
         target: /etc/config/kratos
@@ -40,13 +36,9 @@ services:
       - '4434:4434' # admin
     restart: unless-stopped
     environment:
-      - DSN=sqlite:///var/lib/sqlite/db.sqlite?_fk=true
+      - DSN=postgres://kratos:password@localhost/kratos?sslmode=disable
     command: serve -c /etc/config/kratos/kratos.yml --dev --watch-courier
     volumes:
-      - type: volume
-        source: kratos-sqlite
-        target: /var/lib/sqlite
-        read_only: false
       - type: bind
         source: ./config
         target: /etc/config/kratos
@@ -62,5 +54,3 @@ services:
 
 networks:
   intranet:
-volumes:
-  kratos-sqlite:
